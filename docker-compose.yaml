@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  dynamodb:
+    command: "-jar DynamoDBLocal.jar -inMemory -port 8000 &"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb
+    ports:
+      - 8000:8000
+### Use this just locally ###
+#  dynamodb-admin:
+#    image: aaronshaf/dynamodb-admin
+#    container_name: dynamodb_admin
+#    ports:
+#      - "8001:8001"
+#    environment:
+#      DYNAMO_ENDPOINT: "http://dynamodb:8000"
+#      AWS_REGION: ${AWS_REGION}
+#      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+#      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+#    depends_on:
+#      - dynamodb
