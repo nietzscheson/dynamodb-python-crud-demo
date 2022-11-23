@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from pynamodb.attributes import NumberAttribute, UnicodeAttribute, UTCDateTimeAttribute
+from pynamodb.attributes import UnicodeAttribute, UTCDateTimeAttribute
 from pynamodb.models import Model
 from src.config import Config
 

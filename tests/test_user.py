@@ -56,3 +56,53 @@ def test_user_delete(add_user):
     new_user.delete()
 
     assert User.count() == 0
+
+def test_users_paginate_two_pages(add_user):
+
+    quantity = 26
+
+    for _ in range(0, quantity):
+        add_user(email=f"0{_}@example.com")
+
+    page_1 = User.scan(limit=25)
+
+    page_1_users = [x for x in page_1]
+
+    assert len(page_1_users) == 25
+
+    page_2 = User.scan(limit=25, last_evaluated_key=page_1.last_evaluated_key)
+
+    page_2_users = [x for x in page_2]
+
+    assert len(page_2_users) == 1
+
+    assert page_2.last_evaluated_key == None
+
+
+def test_users_paginate_three_pages(add_user):
+
+    quantity = 52
+
+    for _ in range(0, quantity):
+        add_user()
+
+    page_1 = User.scan(limit=25, last_evaluated_key=None)
+
+    [x for x in page_1]
+
+    assert page_1.total_count == 25
+
+    page_2 = User.scan(limit=25, last_evaluated_key=page_1.last_evaluated_key)
+
+    [x for x in page_2]
+
+    assert page_2.total_count == 25
+
+    page_3 = User.scan(limit=25, last_evaluated_key=page_2.last_evaluated_key)
+
+    [x for x in page_3]
+
+    assert page_3.total_count == 2
+
+    assert page_3.last_evaluated_key == None
+
