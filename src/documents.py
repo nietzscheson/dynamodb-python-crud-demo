@@ -8,10 +8,7 @@ from src.config import Config
 class Resource(Model):
     __abstract__ = True
 
-    def _uuid():
-        return str(uuid.uuid4())
-
-    id = UnicodeAttribute(hash_key=True, default=_uuid)
+    id = UnicodeAttribute(hash_key=True, default=lambda: uuid.uuid4().hex)
     created_at = UTCDateTimeAttribute(default=datetime.utcnow)
 
     @classmethod
