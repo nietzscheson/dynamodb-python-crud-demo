@@ -1,10 +1,12 @@
 import uuid
 from datetime import datetime
-from pynamodb.indexes import GlobalSecondaryIndex, AllProjection
 
 from pynamodb.attributes import UnicodeAttribute, UTCDateTimeAttribute
+from pynamodb.indexes import AllProjection, GlobalSecondaryIndex
 from pynamodb.models import Model
+
 from src.config import Config
+
 
 class Resource(Model):
     __abstract__ = True
