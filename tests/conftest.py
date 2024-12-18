@@ -1,4 +1,3 @@
-
 import pytest
 from src.documents import User, Product, UserIndex
 from tests.factories import UserFactory, ProductFactory

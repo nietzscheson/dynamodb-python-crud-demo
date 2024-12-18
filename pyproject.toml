@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "pynamodb-crud"
+version = "0.1.0"
+description = ""
+authors = ["Cristian Angulo <cristianangulonova@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pynamodb = "^6.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+debugpy = "^1.8.11"
+pytest = "^8.3.4"
+pytest-xdist = "^3.6.1"
+faker = "^33.1.0"
+factory-boy = "^3.3.1"
+ruff = "^0.8.3"
+pycln = "^2.4.0"
+isort = "^5.13.2"
+
+[tool.ruff]
+line-length = 88
+
+[tool.poetry.scripts]
+linter = "sh -c 'ruff check src --fix && isort src --profile black && pycln src -a -s'"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
